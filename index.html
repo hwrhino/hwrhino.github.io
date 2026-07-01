@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HW RHINO — PCB Design &amp; Layout</title>
+<link rel="icon" type="image/png" href="assets/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -89,7 +90,7 @@
     font-size: 16px;
     letter-spacing: 0.02em;
   }
-  .logo svg { display: block; }
+  .logo-icon { display: block; width: 32px; height: auto; }
   .logo-text .rhino { color: var(--ink); }
   .logo-text .hw { color: var(--steel-dim); font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; display: block; margin-top: -2px; }
 
@@ -158,38 +159,23 @@
   .btn-ghost { border-color: var(--line-strong); color: var(--ink); }
   .btn-ghost:hover { border-color: var(--ink); }
 
-  /* hero diagram */
-  .hero-art { width: 100%; }
-  .hero-art svg { width: 100%; height: auto; display: block; }
-  .trace-line {
-    fill: none;
-    stroke: var(--steel-bright);
-    stroke-width: 1.6;
-    stroke-linecap: square;
-    stroke-linejoin: miter;
-    stroke-dasharray: 900;
-    stroke-dashoffset: 900;
-    animation: draw 2.2s ease forwards 0.3s;
-  }
-  .trace-line.dim { stroke: var(--line-strong); animation-delay: 0.6s; }
-  .pad {
-    fill: var(--bg);
-    stroke: var(--ink);
-    stroke-width: 1.2;
-  }
-  .via-dot { fill: var(--steel-bright); }
-  .label-text {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    fill: var(--steel-dim);
-    letter-spacing: 0.04em;
+  /* hero mark */
+  .hero-art { width: 100%; display: flex; justify-content: center; }
+  .hero-logo {
+    width: 78%;
+    max-width: 360px;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: reveal 0.9s ease forwards 0.25s;
   }
 
-  @keyframes draw {
-    to { stroke-dashoffset: 0; }
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .trace-line { animation: none; stroke-dashoffset: 0; }
+    .hero-logo { animation: none; opacity: 1; transform: none; }
     html { scroll-behavior: auto; }
   }
 
@@ -318,17 +304,7 @@
 <header>
   <div class="nav">
     <a href="#top" class="logo">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="/logo_rhino.png">
-        <rect x="0.5" y="0.5" width="29" height="29" stroke="#16202E"/>
-        <path d="M7 15H11" stroke="#2F6690" stroke-width="1.4"/>
-        <path d="M19 15H23" stroke="#2F6690" stroke-width="1.4"/>
-        <path d="M11 15V9H15" stroke="#16202E" stroke-width="1.4"/>
-        <path d="M19 15V21H15" stroke="#16202E" stroke-width="1.4"/>
-        <circle cx="15" cy="9" r="1.6" fill="#3D82BD"/>
-        <circle cx="15" cy="21" r="1.6" fill="#3D82BD"/>
-        <circle cx="11" cy="15" r="1.6" fill="#16202E"/>
-        <circle cx="19" cy="15" r="1.6" fill="#16202E"/>
-      </svg>
+      <img src="assets/logo-icon.png" alt="HW RHINO" class="logo-icon">
       <span class="logo-text">
         <span class="rhino">HW RHINO</span>
         <span class="hw">HARDWARE &amp; PCB DESIGN</span>
@@ -355,29 +331,7 @@
       </div>
 
       <div class="hero-art">
-        <svg viewBox="0 0 360 320" xmlns="/logo_rhino.png">
-          <rect class="pad" x="30" y="30" width="300" height="260" stroke-dasharray="4 3" fill="none" stroke="#B9C3CF" stroke-width="1"/>
-
-          <path class="trace-line" d="M60 80 H160 V140 H260 V80 H300" pathLength="900"/>
-          <path class="trace-line dim" d="M60 220 H120 V180 H220 V260 H300" pathLength="900"/>
-          <path class="trace-line" d="M180 60 V110" pathLength="900"/>
-          <path class="trace-line dim" d="M180 230 V270" pathLength="900"/>
-
-          <rect class="pad" x="150" y="140" width="60" height="40"/>
-          <text class="label-text" x="158" y="164">U1</text>
-
-          <circle class="via-dot" cx="60" cy="80" r="4"/>
-          <circle class="via-dot" cx="300" cy="80" r="4"/>
-          <circle class="via-dot" cx="60" cy="220" r="4"/>
-          <circle class="via-dot" cx="300" cy="260" r="4"/>
-          <circle class="via-dot" cx="180" cy="60" r="4"/>
-          <circle class="via-dot" cx="180" cy="270" r="4"/>
-
-          <text class="label-text" x="60" y="72">R1</text>
-          <text class="label-text" x="290" y="72">C3</text>
-          <text class="label-text" x="60" y="238">J1</text>
-          <text class="label-text" x="288" y="278">Q2</text>
-        </svg>
+        <img src="assets/logo-icon.png" alt="HW RHINO — rhino head rendered as a circuit trace" class="hero-logo">
       </div>
     </section>
 
@@ -422,7 +376,7 @@
         <div class="contact-card">
           <div class="contact-row">
             <span class="k">Email</span>
-            <a href="mailto:stanislav.rmr@gmail.com">stanislav.rmr@gmail.com</a>
+            <a href="mailto:hello@hwrhino.com">hello@hwrhino.com</a>
           </div>
           <div class="contact-row">
             <span class="k">Response time</span>
