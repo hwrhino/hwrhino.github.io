@@ -6,14 +6,10 @@
     <title>HW RHINO | Electronics Design & Hardware Support</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --accent-blue: #0284c7;
-            --accent-hover: #0369a1;
-            --bg-hero: #f1f5f9;
+            --bg: #ffffff;
+            --text-main: #000000;
+            --text-muted: #555555;
+            --border: #000000;
         }
 
         * {
@@ -23,9 +19,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -34,60 +30,52 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem max(5vw, 20px);
-            border-bottom: 1px solid var(--border-color);
-            background-color: rgba(255, 255, 255, 0.9);
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(8px);
-            z-index: 100;
+            padding: 2rem max(5vw, 20px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .nav-logo-img {
-            height: 32px;
+            height: 28px;
             width: auto;
+            filter: grayscale(100%);
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            color: var(--text-primary);
-        }
-
-        .logo span {
-            color: var(--accent-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-decoration: none;
             margin-left: 2rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-size: 0.9rem;
+            transition: color 0.1s;
         }
 
         .nav-links a:hover {
-            color: var(--accent-blue);
+            color: var(--text-main);
+            text-decoration: underline;
         }
 
-        /* Container & Sections */
+        /* Main Container */
         .container {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
         section:last-of-type {
@@ -95,127 +83,105 @@
         }
 
         .section-title {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 3rem;
             font-weight: 700;
-            letter-spacing: -0.03em;
-            text-align: center;
-        }
-
-        .section-title span {
-            color: var(--accent-blue);
         }
 
         /* Hero Section */
         .hero {
-            padding: 5rem 0;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 6rem 0;
+            text-align: left;
         }
 
         .hero-logo {
-            max-width: 220px;
+            max-width: 140px;
             height: auto;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            filter: grayscale(100%);
         }
 
         .hero h1 {
-            font-size: 2.75rem;
+            font-size: 2.5rem;
             line-height: 1.2;
-            font-weight: 800;
-            letter-spacing: -0.04em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            max-width: 800px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            color: var(--text-muted);
             max-width: 700px;
         }
 
-        /* Grid Framework */
+        /* Grid Lists */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
         }
 
         .card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            padding: 2rem;
         }
 
         .card h3 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
             margin-bottom: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
         }
 
         .card p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Items */
+        .portfolio-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .project-item {
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img-frame {
+            background-color: #fcfcfc;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: monospace;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-meta {
+            padding: 2rem;
+        }
+
+        .project-meta h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta p {
+            color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
         }
 
-        /* Portfolio Specifics */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .project-img-placeholder {
-            background-color: #f1f5f9;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-family: monospace;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-        }
-
-        .project-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.25rem;
-        }
-
-        /* Technical Tags */
+        /* Technical Line-Items */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -223,96 +189,60 @@
         }
 
         .tag {
-            background-color: #f1f5f9;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
             font-size: 0.8rem;
             font-family: monospace;
         }
 
-        /* Buttons & CTA */
+        /* Buttons & Raw Actions */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--text-primary);
-            color: var(--bg-main);
+            display: inline-block;
+            background-color: var(--text-main);
+            color: var(--bg);
             text-decoration: none;
-            padding: 0.75rem 1.75rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background-color 0.2s;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.1s, color 0.1s;
+            border: 1px solid var(--border);
         }
 
         .btn:hover {
-            background-color: var(--text-secondary);
+            background-color: var(--bg);
+            color: var(--text-main);
         }
 
-        .btn-blue {
-            background-color: var(--accent-blue);
-            color: #ffffff;
+        .contact-area {
+            max-width: 700px;
         }
 
-        .btn-blue:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            margin-left: 1rem;
-        }
-
-        .btn-secondary:hover {
-            background-color: #f1f5f9;
-        }
-
-        .cta-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 4rem;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 850px;
-            margin: 0 auto;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .cta-box p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+        .contact-area p {
             font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
 
         .disclaimer {
             font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color: var(--text-muted);
+            margin-top: 3rem;
             line-height: 1.5;
-            background-color: #f1f5f9;
-            padding: 12px;
-            border-radius: 6px;
+            border-top: 1px dashed var(--border);
+            padding-top: 1.5rem;
         }
 
         footer {
-            text-align: center;
             padding: 4rem 0;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .nav-links { display: none; }
-            .cta-box { padding: 2rem; }
-            .btn-secondary { margin-left: 0; margin-top: 1rem; display: block; text-align: center; }
         }
     </style>
 </head>
@@ -320,12 +250,12 @@
 
     <nav>
         <div class="nav-logo-container">
-            <img src="logo_rhino (3).png" alt="HW RHINO Logo" class="nav-logo-img">
-            <div class="logo">HW <span>RHINO</span></div>
+            <img src="logo_rhino (3).png" alt="HW RHINO" class="nav-logo-img">
+            <div class="logo">HW RHINO</div>
         </div>
         <div class="nav-links">
-            <a href="#services">Capabilities</a>
-            <a href="#portfolio">Case Studies</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#cases">Case Studies</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -333,75 +263,52 @@
     <div class="container">
 
         <section class="hero">
-            <img src="logo_rhino.png" alt="HW RHINO Logo" class="hero-logo">
-            <h1>Hardware Engineering & PCB Design Consultancy.</h1>
-            <p>Providing pristine schematic capture, rigorous high-density board routing, and dedicated signal integrity support for complex embedded hardware architectures.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-blue">Request Consultation</a>
-                <a href="#services" class="btn btn-secondary">View Capabilities</a>
-            </div>
+            <img src="logo_rhino.png" alt="HW RHINO" class="hero-logo">
+            <h1>Electronics Engineering & PCB Design Layout.</h1>
+            <p>Pristine schematic capture, rigid-flex configurations, high-density multi-layer routing, and structural signal integrity support for embedded systems hardware.</p>
         </section>
 
-        <section id="services">
-            <h2 class="section-title">Engineering <span>Capabilities</span></h2>
+        <section id="capabilities">
+            <h2 class="section-title">Capabilities</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>PCB Layout & Routing</h3>
-                    <p>Specialized multi-layer board layout engineered directly for performance. Expert routing handling tight mechanical constraints, rigid-flex stackups, and controlled impedance profiles.</p>
-                    <div class="tags">
-                        <span class="tag">HDI</span>
-                        <span class="tag">Rigid-Flex</span>
-                        <span class="tag">Impedance Matching</span>
-                    </div>
+                    <h3>PCB Layout</h3>
+                    <p>High-density multi-layer layouts optimized for tight mechanical enforcements, custom stackups, and controlled impedance requirements.</p>
                 </div>
                 <div class="card">
-                    <h3>Hardware Architecture</h3>
-                    <p>Translating conceptual definitions into concrete hardware designs. Seamless component selection, clean schematic captures, and robust system-level block layouts.</p>
-                    <div class="tags">
-                        <span class="tag">MCU Platforms</span>
-                        <span class="tag">Schematic Capture</span>
-                        <span class="tag">Power Sub-Systems</span>
-                    </div>
+                    <h3>Architecture</h3>
+                    <p>Translating system design parameters into rigorous component selection topologies, clean schematics, and functional wiring architectures.</p>
                 </div>
                 <div class="card">
-                    <h3>Design Review & Support</h3>
-                    <p>Targeted engineering oversight to guarantee baseline hardware success. Third-party structural design audits, precise debugging advisement, and manufacturing asset generation.</p>
-                    <div class="tags">
-                        <span class="tag">BOM Optimization</span>
-                        <span class="tag">Gerber Validation</span>
-                        <span class="tag">DFM Evaluation</span>
-                    </div>
+                    <h3>Engineering Support</h3>
+                    <p>Independent structural layout audits, circuit debugging analysis, and compilation of production data assets (BOM/Gerber).</p>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio">
-            <h2 class="section-title">Project <span>Case Studies</span></h2>
-            <div class="portfolio-grid">
+        <section id="cases">
+            <h2 class="section-title">Case Studies</h2>
+            <div class="portfolio-list">
                 
-                <div class="project-card">
-                    <div class="project-img-placeholder">
-                        [HIGH-DENSITY EMBEDDED CONTROLLER RENDER]
-                    </div>
-                    <div class="project-info">
-                        <h3>High-Density MCU System Board</h3>
-                        <p>A compact, multi-layer processing subsystem featuring micro-bga escapes, high-frequency bus line separation, and optimal power planes.</p>
+                <div class="project-item">
+                    <div class="project-img-frame">[ CAD / ARCHITECTURE LAYOUT DIAGRAM ]</div>
+                    <div class="project-meta">
+                        <h3>High-Density MCU System Layout</h3>
+                        <p>Compact processing platform handling fine-pitch component configurations and rigid bus layer routing matrices.</p>
                         <div class="tags">
+                            <span class="tag">HDI Layout</span>
                             <span class="tag">OrCAD / Allegro</span>
-                            <span class="tag">High-Density Interconnect</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-img-placeholder">
-                        [RIGID-FLEX LAYER PROFILE]
-                    </div>
-                    <div class="project-info">
-                        <h3>Rigid-Flex Interface Architecture</h3>
-                        <p>Space-optimized dynamic flex interconnect routing built to withstand tightly enclosed cross-talk vulnerabilities and strict bend radiuses.</p>
+                <div class="project-item">
+                    <div class="project-img-frame">[ RIGID-FLEX STACKUP PROFILE ]</div>
+                    <div class="project-meta">
+                        <h3>Rigid-Flex Interconnect System</h3>
+                        <p>Space-constrained dynamic interface layout engineered to mitigate cross-talk constraints inside dense enclosures.</p>
                         <div class="tags">
-                            <span class="tag">Rigid-Flex Layout</span>
+                            <span class="tag">Rigid-Flex</span>
                             <span class="tag">Signal Integrity</span>
                         </div>
                     </div>
@@ -411,13 +318,13 @@
         </section>
 
         <section id="contact">
-            <div class="cta-box">
-                <h2>Have a complex hardware challenge?</h2>
-                <p>Let's map out your next board design requirements. Connect directly to access dedicated layout execution, structural schematic reviews, or component footprint support.</p>
-                <a href="mailto:your.email@example.com" class="btn btn-blue">Contact Engineering Support</a>
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-area">
+                <p>Discuss your physical layout parameters or engineering support requirements directly.</p>
+                <a href="mailto:contact@hwrhino.com" class="btn">Email Engineering Support</a>
                 
                 <p class="disclaimer">
-                    <strong>Scope Notice:</strong> HW RHINO specializes exclusively in schematic capture, circuit design optimization, PCB layout, and technical engineering analysis. Physical component assembly lines, hardware prototyping fabrication, and end-tier factory manufacturing integration are outside our direct service suite.
+                    <strong>Scope Focus:</strong> HW RHINO specializes strictly in hardware design capture, optimization layout analysis, and verification support engineering. Physical prototyping assembly lines and volume turnkey board manufacturing integration are entirely outside our execution scope.
                 </p>
             </div>
         </section>
