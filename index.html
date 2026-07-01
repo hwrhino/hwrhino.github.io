@@ -1,339 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW RHINO | Electronics Design & Hardware Support</title>
-    <style>
-        :root {
-            --bg: #ffffff;
-            --text-main: #000000;
-            --text-muted: #555555;
-            --border: #000000;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW RHINO — PCB Design &amp; Layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFBFC;
+    --bg-raised: #F1F4F8;
+    --ink: #16202E;
+    --ink-soft: #4B5768;
+    --line: #DDE3EA;
+    --line-strong: #B9C3CF;
+    --steel: #2F6690;
+    --steel-bright: #3D82BD;
+    --steel-dim: #7C93A6;
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    --font-display: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem max(5vw, 20px);
-            border-bottom: 1px solid var(--border);
-        }
+  html { scroll-behavior: smooth; }
 
-        .nav-logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        .nav-logo-img {
-            height: 28px;
-            width: auto;
-            filter: grayscale(100%);
-        }
+  a { color: inherit; text-decoration: none; }
 
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.1s;
-        }
+  /* ---------- trace divider ---------- */
+  .trace {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .trace::before, .trace::after {
+    content: "";
+    height: 1px;
+    background: var(--line);
+    flex: 1;
+  }
+  .via {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--steel-bright);
+    flex-shrink: 0;
+  }
 
-        .nav-links a:hover {
-            color: var(--text-main);
-            text-decoration: underline;
-        }
+  /* ---------- header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 251, 252, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+  .logo svg { display: block; }
+  .logo-text .rhino { color: var(--ink); }
+  .logo-text .hw { color: var(--steel-dim); font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; display: block; margin-top: -2px; }
 
-        /* Main Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  nav.links {
+    display: flex;
+    gap: 32px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+  nav.links a { position: relative; padding: 4px 0; transition: color 0.15s ease; }
+  nav.links a:hover { color: var(--steel); }
+  nav.links a::before { content: "// "; color: var(--line-strong); }
 
-        section {
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--border);
-        }
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 96px 0 72px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--steel);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow .via { width: 5px; height: 5px; }
 
-        section:last-of-type {
-            border-bottom: none;
-        }
+  h1 {
+    font-size: clamp(34px, 4.4vw, 52px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+  h1 .accent { color: var(--steel-bright); }
 
-        .section-title {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 3rem;
-            font-weight: 700;
-        }
+  .hero p.lede {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-bottom: 36px;
+  }
 
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0;
-            text-align: left;
-        }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 
-        .hero-logo {
-            max-width: 140px;
-            height: auto;
-            margin-bottom: 2.5rem;
-            filter: grayscale(100%);
-        }
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    padding: 13px 22px;
+    border: 1px solid var(--ink);
+    display: inline-block;
+    transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-primary:hover { background: var(--steel); border-color: var(--steel); }
+  .btn-ghost { border-color: var(--line-strong); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--ink); }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
+  /* hero diagram */
+  .hero-art { width: 100%; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .trace-line {
+    fill: none;
+    stroke: var(--steel-bright);
+    stroke-width: 1.6;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    animation: draw 2.2s ease forwards 0.3s;
+  }
+  .trace-line.dim { stroke: var(--line-strong); animation-delay: 0.6s; }
+  .pad {
+    fill: var(--bg);
+    stroke: var(--ink);
+    stroke-width: 1.2;
+  }
+  .via-dot { fill: var(--steel-bright); }
+  .label-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--steel-dim);
+    letter-spacing: 0.04em;
+  }
 
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 700px;
-        }
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trace-line { animation: none; stroke-dashoffset: 0; }
+    html { scroll-behavior: auto; }
+  }
 
-        /* Grid Lists */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2.5rem;
-        }
+  /* ---------- section shared ---------- */
+  section { padding: 72px 0; }
+  section.divided { border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 44px; max-width: 60ch; }
+  .section-head h2 {
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 14px;
+  }
 
-        .card {
-            border: 1px solid var(--border);
-            padding: 2rem;
-        }
+  /* ---------- services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background 0.15s ease;
+  }
+  .service-card:hover { background: var(--bg-raised); }
+  .ref-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--steel-bright);
+    letter-spacing: 0.06em;
+  }
+  .service-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .service-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .service-card .pins {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .pin {
+    width: 5px; height: 5px;
+    background: var(--line-strong);
+  }
 
-        .card h3 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
-        }
+  /* ---------- contact ---------- */
+  .contact-block {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .contact-block h2 {
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .contact-block p.lede {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-top: 16px;
+    max-width: 44ch;
+  }
+  .contact-card {
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-row .k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--steel-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .contact-row a:hover { color: var(--steel-bright); }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--steel-dim);
+    letter-spacing: 0.04em;
+  }
 
-        /* Portfolio Items */
-        .portfolio-list {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .project-item {
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-img-frame {
-            background-color: #fcfcfc;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-family: monospace;
-            font-size: 0.85rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project-meta {
-            padding: 2rem;
-        }
-
-        .project-meta h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-meta p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Technical Line-Items */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            border: 1px solid var(--border);
-            padding: 0.2rem 0.6rem;
-            font-size: 0.8rem;
-            font-family: monospace;
-        }
-
-        /* Buttons & Raw Actions */
-        .btn {
-            display: inline-block;
-            background-color: var(--text-main);
-            color: var(--bg);
-            text-decoration: none;
-            padding: 0.75rem 2rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: background-color 0.1s, color 0.1s;
-            border: 1px solid var(--border);
-        }
-
-        .btn:hover {
-            background-color: var(--bg);
-            color: var(--text-main);
-        }
-
-        .contact-area {
-            max-width: 700px;
-        }
-
-        .contact-area p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 3rem;
-            line-height: 1.5;
-            border-top: 1px dashed var(--border);
-            padding-top: 1.5rem;
-        }
-
-        footer {
-            padding: 4rem 0;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-links { display: none; }
-        }
-    </style>
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 56px; }
+    .hero-art { order: -1; max-width: 320px; margin: 0 auto; }
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-block { grid-template-columns: 1fr; }
+    nav.links { gap: 18px; }
+    .wrap { padding: 0 20px; }
+    .nav { padding: 16px 20px; }
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo-container">
-            <img src="logo_rhino (3).png" alt="HW RHINO" class="nav-logo-img">
-            <div class="logo">HW RHINO</div>
-        </div>
-        <div class="nav-links">
-            <a href="#capabilities">Capabilities</a>
-            <a href="#cases">Case Studies</a>
-            <a href="#contact">Contact</a>
-        </div>
+<header>
+  <div class="nav">
+    <a href="#top" class="logo">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="29" height="29" stroke="#16202E"/>
+        <path d="M7 15H11" stroke="#2F6690" stroke-width="1.4"/>
+        <path d="M19 15H23" stroke="#2F6690" stroke-width="1.4"/>
+        <path d="M11 15V9H15" stroke="#16202E" stroke-width="1.4"/>
+        <path d="M19 15V21H15" stroke="#16202E" stroke-width="1.4"/>
+        <circle cx="15" cy="9" r="1.6" fill="#3D82BD"/>
+        <circle cx="15" cy="21" r="1.6" fill="#3D82BD"/>
+        <circle cx="11" cy="15" r="1.6" fill="#16202E"/>
+        <circle cx="19" cy="15" r="1.6" fill="#16202E"/>
+      </svg>
+      <span class="logo-text">
+        <span class="rhino">HW RHINO</span>
+        <span class="hw">HARDWARE &amp; PCB DESIGN</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </div>
+</header>
 
-    <div class="container">
+<main id="top">
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="via"></span>PCB DESIGN · LAYOUT · VERIFICATION</div>
+        <h1>Precision hardware design, from schematic to <span class="accent">silkscreen</span>.</h1>
+        <p class="lede">Freelance PCB design and layout, with six years building boards that ship. I review schematics, catch what others miss, and run the simulations that confirm a design before it's fabricated.</p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary">Start a project</a>
+          <a href="#services" class="btn btn-ghost">See services</a>
+        </div>
+      </div>
 
-        <section class="hero">
-            <img src="logo_rhino (3).png" alt="HW RHINO" class="hero-logo">
-            <h1>Electronics Engineering & PCB Design Layout.</h1>
-            <p>Pristine schematic capture, rigid-flex configurations, high-density multi-layer routing, and structural signal integrity support for embedded systems hardware.</p>
-        </section>
+      <div class="hero-art">
+        <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+          <rect class="pad" x="30" y="30" width="300" height="260" stroke-dasharray="4 3" fill="none" stroke="#B9C3CF" stroke-width="1"/>
 
-        <section id="capabilities">
-            <h2 class="section-title">Capabilities</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>PCB Layout</h3>
-                    <p>High-density multi-layer layouts optimized for tight mechanical enforcements, custom stackups, and controlled impedance requirements.</p>
-                </div>
-                <div class="card">
-                    <h3>Architecture</h3>
-                    <p>Translating system design parameters into rigorous component selection topologies, clean schematics, and functional wiring architectures.</p>
-                </div>
-                <div class="card">
-                    <h3>Engineering Support</h3>
-                    <p>Independent structural layout audits, circuit debugging analysis, and compilation of production data assets (BOM/Gerber).</p>
-                </div>
-            </div>
-        </section>
+          <path class="trace-line" d="M60 80 H160 V140 H260 V80 H300" pathLength="900"/>
+          <path class="trace-line dim" d="M60 220 H120 V180 H220 V260 H300" pathLength="900"/>
+          <path class="trace-line" d="M180 60 V110" pathLength="900"/>
+          <path class="trace-line dim" d="M180 230 V270" pathLength="900"/>
 
-        <section id="cases">
-            <h2 class="section-title">Case Studies</h2>
-            <div class="portfolio-list">
-                
-                <div class="project-item">
-                    <div class="project-img-frame">[ CAD / ARCHITECTURE LAYOUT DIAGRAM ]</div>
-                    <div class="project-meta">
-                        <h3>High-Density MCU System Layout</h3>
-                        <p>Compact processing platform handling fine-pitch component configurations and rigid bus layer routing matrices.</p>
-                        <div class="tags">
-                            <span class="tag">HDI Layout</span>
-                            <span class="tag">OrCAD / Allegro</span>
-                        </div>
-                    </div>
-                </div>
+          <rect class="pad" x="150" y="140" width="60" height="40"/>
+          <text class="label-text" x="158" y="164">U1</text>
 
-                <div class="project-item">
-                    <div class="project-img-frame">[ RIGID-FLEX STACKUP PROFILE ]</div>
-                    <div class="project-meta">
-                        <h3>Rigid-Flex Interconnect System</h3>
-                        <p>Space-constrained dynamic interface layout engineered to mitigate cross-talk constraints inside dense enclosures.</p>
-                        <div class="tags">
-                            <span class="tag">Rigid-Flex</span>
-                            <span class="tag">Signal Integrity</span>
-                        </div>
-                    </div>
-                </div>
+          <circle class="via-dot" cx="60" cy="80" r="4"/>
+          <circle class="via-dot" cx="300" cy="80" r="4"/>
+          <circle class="via-dot" cx="60" cy="220" r="4"/>
+          <circle class="via-dot" cx="300" cy="260" r="4"/>
+          <circle class="via-dot" cx="180" cy="60" r="4"/>
+          <circle class="via-dot" cx="180" cy="270" r="4"/>
 
-            </div>
-        </section>
+          <text class="label-text" x="60" y="72">R1</text>
+          <text class="label-text" x="290" y="72">C3</text>
+          <text class="label-text" x="60" y="238">J1</text>
+          <text class="label-text" x="288" y="278">Q2</text>
+        </svg>
+      </div>
+    </section>
 
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-area">
-                <p>Discuss your physical layout parameters or engineering support requirements directly.</p>
-                <a href="mailto:contact@hwrhino.com" class="btn">Email Engineering Support</a>
-                
-                <p class="disclaimer">
-                    <strong>Scope Focus:</strong> HW RHINO specializes strictly in hardware design capture, optimization layout analysis, and verification support engineering. Physical prototyping assembly lines and volume turnkey board manufacturing integration are entirely outside our execution scope.
-                </p>
-            </div>
-        </section>
+    <section id="services" class="divided">
+      <div class="section-head">
+        <div class="eyebrow"><span class="via"></span>SERVICES</div>
+        <h2>Three ways to get a board right.</h2>
+      </div>
 
-        <footer>
-            <p>&copy; 2026 HW RHINO. All rights reserved.</p>
-        </footer>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="ref-tag">U1 — DESIGN</span>
+          <h3>PCB Design &amp; Layout</h3>
+          <p>Schematic capture through routed layout — placement, stack-up, signal integrity, and DFM checks built in from the first pass.</p>
+          <div class="pins"><span class="pin"></span><span class="pin"></span><span class="pin"></span></div>
+        </div>
 
+        <div class="service-card">
+          <span class="ref-tag">U2 — REVIEW</span>
+          <h3>Schematic Review &amp; Verification</h3>
+          <p>A second, experienced set of eyes on someone else's schematic or layout — errors, footprint mismatches, and risky nets flagged before fab.</p>
+          <div class="pins"><span class="pin"></span><span class="pin"></span><span class="pin"></span></div>
+        </div>
+
+        <div class="service-card">
+          <span class="ref-tag">U3 — SIMULATE</span>
+          <h3>Simulation &amp; Analysis</h3>
+          <p>Circuit-level and power simulations to confirm a design behaves as intended before a single board gets ordered.</p>
+          <div class="pins"><span class="pin"></span><span class="pin"></span><span class="pin"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="divided">
+      <div class="contact-block">
+        <div>
+          <div class="eyebrow"><span class="via"></span>CONTACT</div>
+          <h2>Have a board that needs to work the first time?</h2>
+          <p class="lede">Send over your schematics, requirements, or a rough idea. I'll reply with a scope and timeline.</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-row">
+            <span class="k">Email</span>
+            <a href="mailto:hello@hwrhino.com">hello@hwrhino.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="k">Response time</span>
+            <span>Within 1–2 business days</span>
+          </div>
+          <div class="contact-row">
+            <span class="k">Based in</span>
+            <span>Available remote, worldwide</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <span>© 2026 HW RHINO</span>
+      <span>PCB DESIGN &amp; LAYOUT</span>
     </div>
+  </div>
+</footer>
 
 </body>
 </html>
