@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW RHINO | Electronics Design & Hardware Support</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* Header / Hero Section */
+        header {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: var(--text-main);
+        }
+
+        .logo-area span {
+            color: var(--accent);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Services Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Expertise / Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        /* Contact Section */
+        .contact-panel {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-panel p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #0f172a;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="logo-area">
+                <h1>HW <span>RHINO</span></h1>
+            </div>
+            <p>Professional Electronics Engineering, PCB Design, and Hardware Architecture Support.</p>
+        </header>
+
+        <section id="services">
+            <h2>Our Capabilities</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>PCB Design & Layout</h3>
+                    <p>High-density, multi-layer board routing optimized for manufacturing yield, signal integrity, and strict mechanical constraints.</p>
+                </div>
+                <div class="card">
+                    <h3>Hardware Architecture</h3>
+                    <p>Component selection, schematic capture, and system-level block diagrams tailored to your performance and power budgets.</p>
+                </div>
+                <div class="card">
+                    <h3>Engineering Support</h3>
+                    <p>Design reviews, hardware debugging consultation, and generation of production-ready documentation (BOM, Gerber files).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertise">
+            <h2>Technical Domains</h2>
+            <div class="tags">
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Signal Integrity</span>
+                <span class="tag">High-Density Interconnect (HDI)</span>
+                <span class="tag">Rigid-Flex Stackups</span>
+                <span class="tag">Microcontrollers (MCU)</span>
+                <span class="tag">OrCAD / Allegro</span>
+                <span class="tag">Schematic Capture</span>
+                <span class="tag">BOM Management</span>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-panel">
+                <p>Have a complex hardware challenge or need an expert layout resource? Let's discuss your design requirements.</p>
+                <a href="mailto:your.email@example.com" class="btn">Contact Engineering Support</a>
+                <p class="note">*Please note: HW RHINO specializes strictly in design, architecture, and engineering support services. We do not provide physical manufacturing or hardware integration services directly.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 HW RHINO. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
