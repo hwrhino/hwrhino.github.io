@@ -6,13 +6,14 @@
     <title>HW RHINO | Electronics Design & Hardware Support</title>
     <style>
         :root {
-            --bg-main: #0b0f19;
-            --bg-card: #131a26;
-            --border-color: #222f43;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --accent-cyan: #06b6d4;
-            --accent-blue: #3b82f6;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #0284c7;
+            --accent-hover: #0369a1;
+            --bg-hero: #f1f5f9;
         }
 
         * {
@@ -33,23 +34,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem max(5vw, 20px);
+            padding: 1rem max(5vw, 20px);
             border-bottom: 1px solid var(--border-color);
-            background-color: rgba(11, 15, 25, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             position: sticky;
             top: 0;
             backdrop-filter: blur(8px);
             z-index: 100;
         }
 
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-img {
+            height: 32px;
+            width: auto;
+        }
+
         .logo {
             font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: -0.05em;
+            color: var(--text-primary);
         }
 
         .logo span {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
         .nav-links a {
@@ -57,11 +70,12 @@
             text-decoration: none;
             margin-left: 2rem;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
         /* Container & Sections */
@@ -85,34 +99,43 @@
             margin-bottom: 3rem;
             font-weight: 700;
             letter-spacing: -0.03em;
+            text-align: center;
         }
 
         .section-title span {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
         /* Hero Section */
         .hero {
-            padding: 7rem 0 5rem 0;
-            text-align: left;
-            max-width: 800px;
+            padding: 5rem 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 2rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            line-height: 1.15;
+            font-size: 2.75rem;
+            line-height: 1.2;
             font-weight: 800;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-primary);
+            max-width: 800px;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
+            max-width: 700px;
         }
 
         /* Grid Framework */
@@ -126,19 +149,22 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 2rem;
-            transition: border-color 0.3s, transform 0.3s;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-blue);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .card h3 {
             font-size: 1.25rem;
             margin-bottom: 1rem;
             font-weight: 600;
+            color: var(--text-primary);
         }
 
         .card p {
@@ -159,15 +185,16 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .project-img-placeholder {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            height: 200px;
+            background-color: #f1f5f9;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--border-color);
+            color: var(--text-secondary);
             font-family: monospace;
             border-bottom: 1px solid var(--border-color);
         }
@@ -179,12 +206,13 @@
         .project-info h3 {
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
+            color: var(--text-primary);
         }
 
         .project-info p {
             color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         /* Technical Tags */
@@ -195,9 +223,9 @@
         }
 
         .tag {
-            background-color: rgba(6, 182, 212, 0.08);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            color: var(--accent-cyan);
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
             padding: 0.25rem 0.75rem;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -211,15 +239,24 @@
             background-color: var(--text-primary);
             color: var(--bg-main);
             text-decoration: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.75rem;
             border-radius: 6px;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: opacity 0.2s;
+            transition: background-color 0.2s;
         }
 
         .btn:hover {
-            opacity: 0.9;
+            background-color: var(--text-secondary);
+        }
+
+        .btn-blue {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        .btn-blue:hover {
+            background-color: var(--accent-hover);
         }
 
         .btn-secondary {
@@ -230,18 +267,18 @@
         }
 
         .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            background-color: rgba(255,255,255,0.02);
+            background-color: #f1f5f9;
         }
 
         .cta-box {
-            background: radial-gradient(circle at top left, rgba(6, 182, 212, 0.15), transparent 60%), var(--bg-card);
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 3.5rem;
+            padding: 4rem;
             border-radius: 12px;
             text-align: center;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .cta-box p {
@@ -253,11 +290,14 @@
         .disclaimer {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            margin-top: 2rem;
-            max-width: 500px;
+            margin-top: 2.5rem;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.4;
+            line-height: 1.5;
+            background-color: #f1f5f9;
+            padding: 12px;
+            border-radius: 6px;
         }
 
         footer {
@@ -269,7 +309,7 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.25rem; }
+            .hero h1 { font-size: 2rem; }
             .nav-links { display: none; }
             .cta-box { padding: 2rem; }
             .btn-secondary { margin-left: 0; margin-top: 1rem; display: block; text-align: center; }
@@ -279,10 +319,13 @@
 <body>
 
     <nav>
-        <div class="logo">HW <span>RHINO</span></div>
+        <div class="nav-logo-container">
+            <img src="logo_rhino (3).png" alt="HW RHINO Logo" class="nav-logo-img">
+            <div class="logo">HW <span>RHINO</span></div>
+        </div>
         <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#portfolio">Projects</a>
+            <a href="#services">Capabilities</a>
+            <a href="#portfolio">Case Studies</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -290,10 +333,11 @@
     <div class="container">
 
         <section class="hero">
-            <h1>High-Reliability Electronics Design & Engineering Support.</h1>
-            <p>Providing clean schematic capture, rigorous high-density PCB layout, and signal integrity evaluation for complex embedded hardware systems.</p>
+            <img src="logo_rhino.png" alt="HW RHINO Logo" class="hero-logo">
+            <h1>Hardware Engineering & PCB Design Consultancy.</h1>
+            <p>Providing pristine schematic capture, rigorous high-density board routing, and dedicated signal integrity support for complex embedded hardware architectures.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn">Request Consultation</a>
+                <a href="#contact" class="btn btn-blue">Request Consultation</a>
                 <a href="#services" class="btn btn-secondary">View Capabilities</a>
             </div>
         </section>
@@ -302,30 +346,30 @@
             <h2 class="section-title">Engineering <span>Capabilities</span></h2>
             <div class="grid">
                 <div class="card">
-                    <h3>PCB Design & Layout</h3>
-                    <p>Specialized high-density board engineering across multi-layer stackups, rigid-flex routing, and careful impedance control configurations.</p>
+                    <h3>PCB Layout & Routing</h3>
+                    <p>Specialized multi-layer board layout engineered directly for performance. Expert routing handling tight mechanical constraints, rigid-flex stackups, and controlled impedance profiles.</p>
                     <div class="tags">
                         <span class="tag">HDI</span>
                         <span class="tag">Rigid-Flex</span>
-                        <span class="tag">Stackup Opt.</span>
+                        <span class="tag">Impedance Matching</span>
                     </div>
                 </div>
                 <div class="card">
                     <h3>Hardware Architecture</h3>
-                    <p>Translating conceptual design parameters into accurate component selections, full block schematics, and functional sub-circuits.</p>
+                    <p>Translating conceptual definitions into concrete hardware designs. Seamless component selection, clean schematic captures, and robust system-level block layouts.</p>
                     <div class="tags">
-                        <span class="tag">MCU / MPU</span>
-                        <span class="tag">Power Budgets</span>
+                        <span class="tag">MCU Platforms</span>
                         <span class="tag">Schematic Capture</span>
+                        <span class="tag">Power Sub-Systems</span>
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Design Reviews & Support</h3>
-                    <p>Independent evaluation of hardware revisions, layout validation, debugging guidance, and production compilation.</p>
+                    <h3>Design Review & Support</h3>
+                    <p>Targeted engineering oversight to guarantee baseline hardware success. Third-party structural design audits, precise debugging advisement, and manufacturing asset generation.</p>
                     <div class="tags">
-                        <span class="tag">BOM Review</span>
-                        <span class="tag">Gerber Verification</span>
-                        <span class="tag">DFM</span>
+                        <span class="tag">BOM Optimization</span>
+                        <span class="tag">Gerber Validation</span>
+                        <span class="tag">DFM Evaluation</span>
                     </div>
                 </div>
             </div>
@@ -337,30 +381,28 @@
                 
                 <div class="project-card">
                     <div class="project-img-placeholder">
-                        [SYSTEM BLOCK DIAGRAM / RENDER]
+                        [HIGH-DENSITY EMBEDDED CONTROLLER RENDER]
                     </div>
                     <div class="project-info">
-                        <h3>High-Density MCU Control Board</h3>
-                        <p>A compact, multi-layered layout utilizing an advanced microcontroller architecture, precise low-noise routing, and optimal power distribution rails.</p>
+                        <h3>High-Density MCU System Board</h3>
+                        <p>A compact, multi-layer processing subsystem featuring micro-bga escapes, high-frequency bus line separation, and optimal power planes.</p>
                         <div class="tags">
-                            <span class="tag">OrCAD</span>
-                            <span class="tag">Embedded Hardware</span>
-                            <span class="tag">Power Distribution</span>
+                            <span class="tag">OrCAD / Allegro</span>
+                            <span class="tag">High-Density Interconnect</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-img-placeholder">
-                        [STACKUP PROFILE / CAD DRAWING]
+                        [RIGID-FLEX LAYER PROFILE]
                     </div>
                     <div class="project-info">
-                        <h3>Rigid-Flex Sensor Interface</h3>
-                        <p>A tailored mechanical-driven design layout optimizing strict enclosure boundaries and cross-talk mitigation over dynamic flex zones.</p>
+                        <h3>Rigid-Flex Interface Architecture</h3>
+                        <p>Space-optimized dynamic flex interconnect routing built to withstand tightly enclosed cross-talk vulnerabilities and strict bend radiuses.</p>
                         <div class="tags">
-                            <span class="tag">Rigid-Flex</span>
+                            <span class="tag">Rigid-Flex Layout</span>
                             <span class="tag">Signal Integrity</span>
-                            <span class="tag">DFM Compliance</span>
                         </div>
                     </div>
                 </div>
@@ -370,12 +412,12 @@
 
         <section id="contact">
             <div class="cta-box">
-                <h2>Ready to start your layout?</h2>
-                <p>Let's map out your next design project. Get a technical review, physical space constraint analysis, or full schematic-to-layout execution tracking.</p>
-                <a href="mailto:contact@hwrhino.com" class="btn">Contact Engineering Support</a>
+                <h2>Have a complex hardware challenge?</h2>
+                <p>Let's map out your next board design requirements. Connect directly to access dedicated layout execution, structural schematic reviews, or component footprint support.</p>
+                <a href="mailto:your.email@example.com" class="btn btn-blue">Contact Engineering Support</a>
                 
                 <p class="disclaimer">
-                    *Design Focus Statement: HW RHINO acts strictly as an engineering layout and design support consultancy. Physical component sourcing, hardware integration, and assembly manufacturing lines are outside our execution scope.
+                    <strong>Scope Notice:</strong> HW RHINO specializes exclusively in schematic capture, circuit design optimization, PCB layout, and technical engineering analysis. Physical component assembly lines, hardware prototyping fabrication, and end-tier factory manufacturing integration are outside our direct service suite.
                 </p>
             </div>
         </section>
