@@ -288,7 +288,35 @@
         </div>
       </div>
     </section>
+<!-- Contact Form - Mailto Version -->
+<div style="margin-top: 40px;">
+  <form action="send.php" method="POST">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div>
+        <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:6px; color:var(--steel-bright);">Name *</label>
+        <input type="text" name="name" required style="width:100%; padding:12px; border:1px solid var(--line-strong); background:white; font-size:15px;">
+      </div>
+      <div>
+        <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:6px; color:var(--steel-bright);">Email *</label>
+        <input type="email" name="email" required style="width:100%; padding:12px; border:1px solid var(--line-strong); background:white; font-size:15px;">
+      </div>
+    </div>
 
+    <div style="margin-top:20px;">
+      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:6px; color:var(--steel-bright);">Company / Project</label>
+      <input type="text" name="company" style="width:100%; padding:12px; border:1px solid var(--line-strong); background:white; font-size:15px;">
+    </div>
+
+    <div style="margin-top:20px;">
+      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:6px; color:var(--steel-bright);">Project Description *</label>
+      <textarea name="message" rows="6" required style="width:100%; padding:12px; border:1px solid var(--line-strong); background:white; font-size:15px; resize:vertical;"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:28px; width:100%; padding:16px;">
+      Send via Email Client
+    </button>
+  </form>
+</div>
     <footer>
       <div class="footer-row">
         <span>© 2026 HW RHINO</span>
