@@ -296,39 +296,36 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
       <div>
         <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Full Name *</label>
-        <input type="text" name="name" required 
-               style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
+        <input type="text" name="name" required style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
       </div>
       <div>
         <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Email Address *</label>
-        <input type="email" name="email" required 
-               style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
+        <input type="email" name="email" required style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
       </div>
     </div>
 
     <div style="margin-top:20px;">
-      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Company / Project Name</label>
-      <input type="text" name="company" 
-             style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
+      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Company / Project</label>
+      <input type="text" name="company" style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px;">
     </div>
 
     <div style="margin-top:20px;">
-      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Project Details *</label>
-      <textarea name="message" rows="7" required 
-                style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px; resize:vertical; font-family:inherit;"></textarea>
+      <label style="display:block; font-family:var(--font-mono); font-size:13px; margin-bottom:8px; color:var(--steel-bright);">Tell me about your project *</label>
+      <textarea name="message" rows="7" required style="width:100%; padding:14px; border:1px solid var(--line-strong); background:white; font-size:15px; border-radius:4px; resize:vertical;"></textarea>
     </div>
 
-    <button type="submit" 
-            class="btn btn-primary" 
-            style="margin-top:32px; width:100%; padding:16px; font-size:15px;">
-      ✉️ Send Message via Email
+    <button type="submit" class="btn btn-primary" style="margin-top:32px; width:100%; padding:16px; font-size:15px;">
+      Send Message
     </button>
 
-    <p style="text-align:center; margin-top:16px; font-size:13px; color:var(--ink-soft);">
-      This will open your email client with the message ready to send.
+    <p style="text-align:center; margin-top:16px; font-size:13px; color:var(--ink-soft); line-height:1.4;">
+      Your email client will open with a pre-filled message.<br>
+      <strong>This is safe</strong> — only you and I will see the information.
     </p>
   </form>
 </div>
+
+
     <footer>
       <div class="footer-row">
         <span>© 2026 HW RHINO</span>
